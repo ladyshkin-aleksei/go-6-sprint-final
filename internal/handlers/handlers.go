@@ -17,14 +17,14 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	file, err := os.Open("../index.html")
+	file, err := os.Open("index.html")
 	if err != nil {
 		http.Error(w, "file index.html not found: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer file.Close()
 
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 
 	_, err = io.Copy(w, file)
 	if err != nil {
